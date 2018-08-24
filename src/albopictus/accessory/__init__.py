@@ -114,3 +114,18 @@ def getClimate(lon,lat,times='global'):
     if len(rt['mean_air_temp'])==0:
         print("Error: We do not have the climate variables you requested in our database")
     return rt
+
+def BestDist(lon, lat):
+    """
+    Allows user to enter any set of coordinates and the closest ones will be calculated.
+    Closest coordinates depend on the model used for getLonLat function
+    """
+    
+    bestPoint = [0,0]
+    bestDistance = 9999999999
+    for point in map:
+        distance = math.sqrt( ((point[0] - lon)**2) + ((point[1] - lat)**2) )
+        if (distance < bestDistance):
+            bestDistance = distance
+            bestPoint = point
+    return bestPoint
